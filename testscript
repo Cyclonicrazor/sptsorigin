@@ -1,0 +1,1122 @@
+if _G.Key == "Thijmensexy" or "ahwOUIAHw@AUIhsaiuh@O" then
+    if game.PlaceId == 10710676163 then
+        ScriptActive = true
+        deathreturnactive = true
+        playerdied = false
+        local function callback(Text)
+            if Text == "Button1 text" then
+             print ("Answer")
+           elseif Text == ("Button2 text") then
+            print ("Answer2")
+            end
+           end
+           
+           local NotificationBindable = Instance.new("BindableFunction")
+           NotificationBindable.OnInvoke = callback
+           --
+           game.StarterGui:SetCore("SendNotification",  {
+            Title = "Made by Cyclonicrazor91#6028";
+            Text = "Dont skid this shit";
+            Icon = "";
+            Duration = 5;
+            Button1 = "Ok";
+            Callback = NotificationBindable;
+           })
+    
+           local VirtualUser=game:service'VirtualUser' -- AntiAfk PhoenixAceVFX
+           game:service'Players'.LocalPlayer.Idled:connect(function()
+            VirtualUser:CaptureController()
+            VirtualUser:ClickButton2(Vector2.new())
+           end)
+           if ScriptActive then
+            local HttpServ = game:GetService("HttpService")
+           webhookURL = ""
+           
+           getgenv().cooldown = false
+           function DiscordOut(txtwrap, ...)
+               local msg = {...}
+               for i = 1, #msg do
+                   local newstr = tostring(msg[i]) or "nil"
+                   msg[i] = newstr.." "
+               end
+               local msg = table.concat(msg)
+               if txtwrap and tostring(txtwrap) then msg = txtwrap..msg end
+                   
+               repeat task.wait(0.2) until getgenv().cooldown == false -- discord has rate limit
+               getgenv().cooldown = true
+               local respons = syn.request({
+                   Url = webhookURL,
+                   Method = "POST",
+                   Headers = {
+                       ['Content-Type'] = 'application/json'
+                   },
+                   Body = HttpServ:JSONEncode({content = msg or "error when getting messages"})
+               })
+               if not respons.Success then warn("error when printing message: "..tostring(msg) or "nil") end
+               task.wait(0.8)
+               getgenv().cooldown = false
+           end
+            end
+            spawn(function()
+                while true do
+                    if deathreturnactive then
+                        player = game:GetService("Players").LocalPlayer
+                        player.Character.Humanoid.Died:connect(function()
+                            playerdied = true
+                        end)
+                    end
+                    if not playerdied then
+                        lastlocationx = game.Players.LocalPlayer.Character.HumanoidRootPart.Position.x
+                        lastlocationy = game.Players.LocalPlayer.Character.HumanoidRootPart.Position.y
+                        lastlocationz = game.Players.LocalPlayer.Character.HumanoidRootPart.Position.z
+                        SavePositionText = "Last Place: " ..lastlocationx.. "," ..lastlocationy.. "," ..lastlocationz
+                        --print(tostring(SavePositionText))
+                        wait(0.5)
+                    end
+                    if playerdied then
+                        print("Player " ..tostring(game.Players.LocalPlayer.Name).. " Died")
+                        print("Last location known: " ..tostring(SavePositionText))
+                        wait(5)
+                        game:GetService("ReplicatedStorage").RemoteEvent:FireServer({[1] = "Respawn"})
+                        wait(1)
+                        game.Lighting.Blur.Enabled = false
+                        game.Players.LocalPlayer.PlayerGui.IntroGui.Enabled = false
+                        game.Players.LocalPlayer.PlayerGui.ScreenGui.Enabled = true
+                        wait(4)
+                        --print("screengui disabled")
+                        repeat wait(0.1) until game.Players.LocalPlayer.Character.Humanoid
+                        --print("Teleporting back to " ..tostring(SavePositionText))
+                        if deathreturnactive then
+                            local FindHum = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(lastlocationx, lastlocationy, lastlocationz)
+                            wait(1)
+                            if PPUsed then
+                                local A_2 = game:GetService("Players").LocalPlayer.Backpack.Meditate
+                                A_2.Parent = game:GetService("Players").LocalPlayer.Character
+                                if Invincibility == true then
+                                    game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                                    local value = 9999999999
+                                    game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                                    game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                                end
+                            end
+                            if FSUsed then
+                                local A_2 = game:GetService("Players").LocalPlayer.Backpack["Fist Training"]
+                                A_2.Parent = game:GetService("Players").LocalPlayer.Character
+                                if Invincibility == true then
+                                    game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                                    local value = 9999999999
+                                    game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                                    game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                                end                            
+                            end
+                            if BTUsed then
+                                local A_2 = game:GetService("Players").LocalPlayer.Backpack["Push Up"]
+                                A_2.Parent = game:GetService("Players").LocalPlayer.Character
+                                if Invincibility == true then
+                                    game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                                    local value = 9999999999
+                                    game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                                    game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                                end
+                            end
+                            if farmmovementactive then
+                                local A_2 = game:GetService("Players").LocalPlayer.Backpack.Weight
+                                A_2.Parent = game:GetService("Players").LocalPlayer.Character
+                                fistarguments = {"Weights"}
+                                for i,v in pairs(fistarguments) do
+                                    game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = MSWeightValue})
+                                    wait(0.5)
+                                end
+                                if Invincibility == true then
+                                    game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                                    local value = 9999999999
+                                    game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                                    game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                                end
+                            end
+                            if farmjumpactive then
+                                local A_2 = game:GetService("Players").LocalPlayer.Backpack.Weight
+                                A_2.Parent = game:GetService("Players").LocalPlayer.Character
+                                fistarguments = {"Weights"}
+                                for i,v in pairs(fistarguments) do
+                                    game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = MSWeightValue})
+                                    wait(0.5)
+                                end
+                                if Invincibility == true then
+                                    game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                                    local value = 9999999999
+                                    game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                                    game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                                end
+                            end
+                        end
+                        playerdied = false
+                    end
+                end
+                wait(1)	
+            end)
+    
+           local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))() -- UI Library
+           local Window = Library.CreateLib("The making of infinite power!", "Midnight")
+    
+           local Main = Window:NewTab("Main")
+           local MainSection = Main:NewSection("Main")
+           MainSection:NewTextBox("Print stats", "Prints stats of the chosen person!", function(txt)
+            function round(num, numDecimalPlaces)
+                local mult = 10^(numDecimalPlaces or 0)
+                return math.floor(num * mult + 0.5) / mult
+            end
+                    
+            function converttoletter(num) -- Not mine
+                if num / 1e21 >=1 then
+                    newnum = num / 1e21
+                    return round(newnum, 3).. "Sx"
+                elseif num / 1e18 >=1 then
+                    newnum = num / 1e18
+                    return round(newnum, 3).. "Qi"
+                elseif num / 1e15 >=1 then
+                    newnum = num / 1e15
+                    return round(newnum, 3).. "Qa"
+                elseif num / 1e12 >=1 then
+                    newnum = num / 1e12
+                    return round(newnum, 3).. "T"
+                elseif num / 1e09 >=1 then
+                    newnum = num / 1e09
+                    return round(newnum, 3).. "B"
+                elseif num / 1e06 >=1 then
+                    newnum = num / 1e06
+                    return round(newnum, 3).. "M"
+                elseif num / 1e03 >=1 then
+                    newnum = num / 1e03
+                    return round(newnum, 3).. "K"
+                else return num
+                end
+            end
+           local A_1 = converttoletter(string.format("%.0f", game:GetService("Players")[txt].PrivateStats.FistStrength.Value))
+           local A_2 = converttoletter(string.format("%.0f", game:GetService("Players")[txt].PrivateStats.BodyToughness.Value))
+           local A_3 = converttoletter(string.format("%.0f", game:GetService("Players")[txt].PrivateStats.PsychicPower.Value))
+           local A_4 = game:GetService("Players")[txt].PrivateStats.Rank.Value
+           local A_5 = game:GetService("Players")[txt].PrivateStats.Token.Value
+           local A_6 = game:GetService("Players")[txt].PrivateStats.Inventory.Value
+           local A_7 = game:GetService("Players")[txt]
+           print("-----------------------------")
+           print(A_7)
+           print("-----------------------------")
+           print("Fist Strength: " ..A_1)
+           print("Body Toughness: " ..A_2)
+           print("Psychic Power: " ..A_3)
+           print("Rank: " ..A_4)
+           print("Tokens:" ..A_5)
+           print("Multipliers: " ..A_6)
+           end)
+           
+           MainSection:NewButton("SpawnTP", "Teleports you to the global spawn!", function(v)
+               game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(460, 250, 888)
+           end)
+           MainSection:NewButton("Turns on SafeHaven!", "Teleports you very far away!", function(v)
+                local value = 100000
+                local part = Instance.new("Part", game.Players.LocalPlayer.Character)
+                part.CFrame = CFrame.new(value, value, value)
+                part.Anchored = true
+                part.Size = Vector3.new(50, 1, 50)
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(value, value, value)
+                Safehaven = true
+           end)
+           
+           MainSection:NewButton("Turns on invincibility!", "Gives your invincibility while training!", function(v)
+               if ScriptActive then
+                   Invincibility = true
+                end
+            end)
+    
+           MainSection:NewButton("Turn off script", "Turns off script by turning values false!", function(v)
+            ScriptActive = false
+            PPUsed = false
+            FSUsed = false
+            BTUsed = false
+            deathreturnactive = false
+            Safehaven = false
+            farmbodyactive = false
+            farmfistactive = false
+            farmjumpactive = false
+            farmmovementactive = false
+            DiscordNotification = false
+            if Invincibility == true then
+                Invincibility = false
+                local plr = game.Players.LocalPlayer
+                local humanoid = plr.Character.Humanoid
+                humanoid.Health = 0
+            end
+           end)
+           MainSection:NewButton("Turn on script", "Incase you pressed turn off on accident!", function(v)
+            ScriptActive = true
+            deathreturnactive = true
+           end)
+    
+           MainSection:NewButton("Emergency Break Script", "Breaks the entire script by rejoining / use this incase script malfunctions!", function(v)
+            local placeId = 10710676163
+            game:GetService("TeleportService"):Teleport(placeId)
+            end)
+    
+            local FSAfk = Window:NewTab("Fist Strength")
+           local FSAfkSection = FSAfk:NewSection("Fist Strength")
+           FSAfkSection:NewButton("Afk Fist <Fly", "Automatically farms fist <Fly!", function(v)
+            if ScriptActive then
+                FSUsed = true
+                PPUsed = false
+                BTUsed = false
+                farmbodyactive = false
+                farmfistactive = true
+                farmjumpactive = false
+                farmmovementactive = false
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(404, 272, 980)
+                game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid")
+                local A_2 = game:GetService("Players").LocalPlayer.Backpack["Fist Training"]
+                A_2.Parent = game:GetService("Players").LocalPlayer.Character
+                game:GetService('RunService').Stepped:wait()
+                while farmfistactive do
+                    game:GetService('RunService').Stepped:wait()
+                    fistarguments = {"Add_FS_Request"}
+                    for i,v in pairs(fistarguments) do
+                        game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = 2})
+                        wait(0.5)
+                    end
+                    if Invincibility == true then
+                    game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                    local value = 9999999999
+                    game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                    game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                end
+                end
+            end
+           end)
+    
+           FSAfkSection:NewButton("Afk Fist <1B", "Automatically farms fist <1B!", function(v)
+            if ScriptActive then
+                FSUsed = true
+                PPUsed = false
+                BTUsed = false
+                farmbodyactive = false
+                farmfistactive = true
+                farmjumpactive = false
+                farmmovementactive = false
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2276, 1968, 1047)
+                game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid")
+                local A_2 = game:GetService("Players").LocalPlayer.Backpack["Fist Training"]
+                A_2.Parent = game:GetService("Players").LocalPlayer.Character
+                game:GetService('RunService').Stepped:wait()
+                while farmfistactive do
+                    game:GetService('RunService').Stepped:wait()
+                    fistarguments = {"Add_FS_Request"}
+                    for i,v in pairs(fistarguments) do
+                        game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = 3})
+                        wait(0.5)
+                    end
+                    if Invincibility == true then
+                    game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                    local value = 9999999999
+                    game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                    game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                end
+            end
+           end
+           end)
+    
+           FSAfkSection:NewButton("Afk Fist 1B", "Automatically farms fist 1B!", function(v)
+            if ScriptActive then
+                FSUsed = true
+                PPUsed = false
+                BTUsed = false
+                farmbodyactive = false
+                farmfistactive = true
+                farmjumpactive = false
+                farmmovementactive = false
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1177, 4789, -2292)
+                game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid")
+                local A_2 = game:GetService("Players").LocalPlayer.Backpack["Fist Training"]
+                A_2.Parent = game:GetService("Players").LocalPlayer.Character
+                game:GetService('RunService').Stepped:wait()
+                while farmfistactive do
+                    game:GetService('RunService').Stepped:wait()
+                    fistarguments = {"Add_FS_Request"}
+                    for i,v in pairs(fistarguments) do
+                        game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = 4})
+                        wait(0.5)
+                    end
+                    if Invincibility == true then
+                    game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                    local value = 9999999999
+                    game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                    game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                end
+            end
+           end
+           end)
+    
+           FSAfkSection:NewButton("Afk Fist 100B", "Automatically farms fist 100B!", function(v)
+            if ScriptActive then
+                FSUsed = true
+                PPUsed = false
+                BTUsed = false
+                farmbodyactive = false
+                farmfistactive = true
+                farmjumpactive = false
+                farmmovementactive = false
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1381, 9274, 1648)
+                game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid")
+                local A_2 = game:GetService("Players").LocalPlayer.Backpack["Fist Training"]
+                A_2.Parent = game:GetService("Players").LocalPlayer.Character
+                game:GetService('RunService').Stepped:wait()
+                while farmfistactive do
+                    game:GetService('RunService').Stepped:wait()
+                    fistarguments = {"Add_FS_Request"}
+                    for i,v in pairs(fistarguments) do
+                        game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = 5})
+                        wait(0.5)
+                    end
+                    if Invincibility == true then
+                    game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                    local value = 9999999999
+                    game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                    game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                end
+            end
+           end
+           end)
+    
+           FSAfkSection:NewButton("Afk Fist 10T", "Automatically farms fist 10T!", function(v)
+            if ScriptActive then
+                FSUsed = true
+                PPUsed = false
+                BTUsed = false
+                farmbodyactive = false
+                farmfistactive = true
+                farmjumpactive = false
+                farmmovementactive = false
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-365, 15735, -9)
+                game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid")
+                local A_2 = game:GetService("Players").LocalPlayer.Backpack["Fist Training"]
+                A_2.Parent = game:GetService("Players").LocalPlayer.Character
+                game:GetService('RunService').Stepped:wait()
+                while farmfistactive do
+                    game:GetService('RunService').Stepped:wait()
+                    fistarguments = {"Add_FS_Request"}
+                    for i,v in pairs(fistarguments) do
+                        game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = 6})
+                        wait(0.5)
+                    end
+                    if Invincibility == true then
+                    game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                    local value = 9999999999
+                    game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                    game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                end
+            end
+           end
+           end)
+    
+           FSAfkSection:NewTextBox("Input number", "Sends a discord notification when u reach that number", function(txt)
+            if ScriptActive then
+                print("If you dont get it here are examples: 1290000000000, 12000000, 1000000000000000 Etc.")
+                FSNumber = txt
+            end
+           end)
+    
+           local BTAfk = Window:NewTab("Body Toughness")
+           local BTAfkSection = BTAfk:NewSection("Body Toughness")
+           BTAfkSection:NewButton("Afk Body <100", "Automatically farms Body <100!", function(v)
+            if ScriptActive then
+                farmfistactive = false
+                farmbodyactive = true
+                farmjumpactive = false
+                farmmovementactive = false
+                BTUsed = true
+                PPUsed = false
+                FSUsed = false
+                game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid")
+                local A_2 = game:GetService("Players").LocalPlayer.Backpack["Push Up"]
+                A_2.Parent = game:GetService("Players").LocalPlayer.Character
+                game:GetService('RunService').Stepped:wait()
+                while farmbodyactive do
+                    game:GetService('RunService').Stepped:wait()
+                    bodyarguments = {"+BT1"}
+                    for i,v in pairs(bodyarguments) do
+                        game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v})
+                        wait(0.5)
+                    end
+                    if Invincibility == true then
+                    game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                    local value = 9999999999
+                    game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                    game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                end
+            end
+            end
+            end)
+    
+            BTAfkSection:NewButton("Afk Body 100", "Automatically farms body 100!", function(v)
+                if ScriptActive then
+                    farmfistactive = false
+                    farmjumpactive = false
+                    farmmovementactive = false
+                    BTUsed = true
+                    PPUsed = false
+                    FSUsed = false
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(367, 250, -445)
+                    if Invincibility == true then
+                        game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                        local value = 9999999999
+                        game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                        game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                    end
+                end
+            end)
+    
+            BTAfkSection:NewButton("Afk Body 10K", "Automatically farms body 10K!", function(v)
+                if ScriptActive then
+                    farmfistactive = false
+                    farmjumpactive = false
+                    farmmovementactive = false
+                    BTUsed = true
+                    PPUsed = false
+                    FSUsed = false
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(355, 264, -494)
+                    if Invincibility == true then
+                        game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                        local value = 9999999999
+                        game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                        game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                    end
+                end
+            end)
+    
+            BTAfkSection:NewButton("Afk Body 100K", "Automatically farms body 100K!", function(v)
+                if ScriptActive then
+                    farmfistactive = false
+                    farmjumpactive = false
+                    farmmovementactive = false
+                    BTUsed = true
+                    PPUsed = false
+                    FSUsed = false
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1637, 259, 2247)
+                    if Invincibility == true then
+                        game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                        local value = 9999999999
+                        game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                        game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                    end
+                end
+            end)
+    
+            BTAfkSection:NewButton("Afk Body 1M", "Automatically farms body 1M!", function(v)
+                if ScriptActive then
+                    farmfistactive = false
+                    farmjumpactive = false
+                    farmmovementactive = false
+                    BTUsed = true
+                    PPUsed = false
+                    FSUsed = false
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2298, 977, 1073)
+                    if Invincibility == true then
+                        game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                        local value = 9999999999
+                        game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                        game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                    end
+                end
+            end)
+    
+            BTAfkSection:NewButton("Afk Body 10M", "Automatically farms body 10M!", function(v)
+                if ScriptActive then
+                    farmfistactive = false
+                    farmjumpactive = false
+                    farmmovementactive = false
+                    BTUsed = true
+                    PPUsed = false
+                    FSUsed = false
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2041, 714, -1892)
+                    if Invincibility == true then
+                        game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                        local value = 9999999999
+                        game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                        game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                    end
+                end
+            end)
+    
+            BTAfkSection:NewButton("Afk Body 1B", "Automatically farms body 1B!", function(v)
+                if ScriptActive then
+                    farmfistactive = false
+                    farmjumpactive = false
+                    farmmovementactive = false
+                    BTUsed = true
+                    PPUsed = false
+                    FSUsed = false
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-243, 287, 980)
+                    if Invincibility == true then
+                    game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                    local value = 9999999999
+                    game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                    game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                    end
+                end
+            end)
+    
+            BTAfkSection:NewButton("Afk Body 100B", "Automatically farms body 100B!", function(v)
+                if ScriptActive then
+                    farmfistactive = false
+                    farmjumpactive = false
+                    farmmovementactive = false
+                    BTUsed = true
+                    PPUsed = false
+                    FSUsed = false
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-286, 281, 991)
+                    if Invincibility == true then
+                    game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                    local value = 9999999999
+                    game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                    game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                    end
+                end
+            end)
+    
+            BTAfkSection:NewButton("Afk Body 10T", "Automatically farms body 10T!", function(v)
+                if ScriptActive then
+                    farmfistactive = false
+                    farmjumpactive = false
+                    farmmovementactive = false
+                    BTUsed = true
+                    PPUsed = false
+                    FSUsed = false
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-286, 281, 1007)
+                    if Invincibility == true then
+                        game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                        local value = 9999999999
+                        game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                        game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                    end
+                end
+            end)
+    
+            BTAfkSection:NewTextBox("Input number", "Sends a discord notification when reached", function(txt)
+                if ScriptActive then
+                    print("If you dont get it here are examples: 1290000000000, 12000000, 1000000000000000 Etc.")
+                    BTNumber = txt
+                end
+               end)
+    
+           local PPAfk = Window:NewTab("Psychic Power")
+           local PPAfkSection = PPAfk:NewSection("Psychic Power")
+           PPAfkSection:NewButton("Afk Psychic <1M", "Automatically farms psychic <1M!", function(v)
+            if ScriptActive then
+                farmfistactive = false
+                farmbodyactive = false
+                farmjumpactive = false
+                farmmovementactive = false
+                PPUsed = true
+                BTUsed = false
+                FSUsed = false
+                local A_2 = game:GetService("Players").LocalPlayer.Backpack.Meditate
+                A_2.Parent = game:GetService("Players").LocalPlayer.Character
+                if Invincibility == true then
+                    game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                    local value = 9999999999
+                    game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                    game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                end
+            end
+            end)
+    
+           PPAfkSection:NewButton("Afk Psychic 1M", "Automatically farms psychic 1M!", function(v)
+            if ScriptActive then
+                farmfistactive = false
+                farmbodyactive = false
+                farmjumpactive = false
+                farmmovementactive = false
+                PPUsed = true
+                BTUsed = false
+                FSUsed = false
+                local A_2 = game:GetService("Players").LocalPlayer.Backpack.Meditate
+                A_2.Parent = game:GetService("Players").LocalPlayer.Character
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2528, 5486, -534)
+                if Invincibility == true then
+                    game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                    local value = 9999999999
+                    game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                    game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                end
+            end
+            end)
+    
+           PPAfkSection:NewButton("Afk Psychic 1B", "Automatically farms psychic 1B!", function(v)
+            if ScriptActive then
+                farmfistactive = false
+                farmbodyactive = false
+                farmjumpactive = false
+                farmmovementactive = false
+                PPUsed = true
+                BTUsed = false
+                FSUsed = false
+                local A_2 = game:GetService("Players").LocalPlayer.Backpack.Meditate
+                A_2.Parent = game:GetService("Players").LocalPlayer.Character
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2560, 5501, -441)
+                if Invincibility == true then
+                    game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                    local value = 9999999999
+                    game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                    game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                end
+            end
+            end)
+    
+           PPAfkSection:NewButton("Afk Psychic 1T", "Automatically farms psychic 1T!", function(v)
+            if ScriptActive then
+                farmfistactive = false
+                farmbodyactive = false
+                farmjumpactive = false
+                farmmovementactive = false
+                PPUsed = true
+                BTUsed = false
+                FSUsed = false
+                local A_2 = game:GetService("Players").LocalPlayer.Backpack.Meditate
+                A_2.Parent = game:GetService("Players").LocalPlayer.Character
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2582, 5516, -503)
+                if Invincibility == true then
+                    game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                    local value = 9999999999
+                    game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                    game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                end
+            end
+            end)
+    
+           PPAfkSection:NewButton("Afk Psychic 1Qa", "Automatically farms psychic 1Qa!", function(v)
+            if ScriptActive then
+                farmfistactive = false
+                farmbodyactive = false
+                farmjumpactive = false
+                farmmovementactive = false
+                PPUsed = true
+                BTUsed = false
+                FSUsed = false
+                local A_2 = game:GetService("Players").LocalPlayer.Backpack.Meditate
+                A_2.Parent = game:GetService("Players").LocalPlayer.Character
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2546, 5412, -496)
+                if Invincibility == true then
+                    game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                    local value = 9999999999
+                    game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                    game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                end
+            end
+            end)
+    
+            PPAfkSection:NewTextBox("Input number", "Sends a discord notification when reached", function(txt)
+                if ScriptActive then
+                    print("If you dont get it here are examples: 1290000000000, 12000000, 1000000000000000 Etc.")
+                    PPNumber = txt
+                end
+               end)
+    
+            local MSAfk = Window:NewTab("Movement Speed")
+            local MSAfkSection = MSAfk:NewSection("Movement Speed")
+            MSAfkSection:NewButton("Afk Movement <100LB", "Automatically farms movement <100LB", function(v)
+                if ScriptActive then
+                    farmmovementactive = true
+                    farmfistactive = false
+                    farmbodyactive = false
+                    farmjumpactive = false
+                    PPUsed = false
+                    BTUsed = false
+                    FSUsed = false
+                    if Safehaven == true then
+                        local value = 100000
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(value, value, value)
+                    end
+                    while farmmovementactive do
+                        game:GetService('RunService').Stepped:wait()
+                        fistarguments = {"Add_MS_Request"}
+                        for i,v in pairs(fistarguments) do
+                            game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = 1})
+                            wait(0.5)
+                        end
+                        if Invincibility == true then
+                        game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                        local value = 9999999999
+                        game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                        game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                    end
+                end
+            end
+            end)
+    
+        MSAfkSection:NewButton("Afk Movement 100LB", "Automatically farms movement 100LB", function(v)
+            if ScriptActive then
+                farmmovementactive = true
+                farmfistactive = false
+                farmbodyactive = false
+                farmjumpactive = false
+                PPUsed = false
+                BTUsed = false
+                FSUsed = false
+                if Safehaven == true then
+                    local value = 100000
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(value, value, value)
+                end
+                local A_2 = game:GetService("Players").LocalPlayer.Backpack.Weight
+                A_2.Parent = game:GetService("Players").LocalPlayer.Character
+                fistarguments = {"Weights"}
+                MSWeightValue = 5
+                for i,v in pairs(fistarguments) do
+                    game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = 2})
+                    wait(0.5)
+                end
+                while farmmovementactive do
+                    game:GetService('RunService').Stepped:wait()
+                        fistarguments = {"Add_MS_Request"}
+                        for i,v in pairs(fistarguments) do
+                            game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = 2})
+                            wait(0.5)
+                        end
+                        if Invincibility == true then
+                    game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                    local value = 9999999999
+                    game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                    game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                end
+            end
+        end
+        end)
+    
+        MSAfkSection:NewButton("Afk Movement 1T", "Automatically farms movement 1T", function(v)
+            if ScriptActive then
+                farmmovementactive = true
+                farmfistactive = false
+                farmbodyactive = false
+                farmjumpactive = false
+                PPUsed = false
+                BTUsed = false
+                FSUsed = false
+                if Safehaven == true then
+                    local value = 100000
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(value, value, value)
+                end
+                local A_2 = game:GetService("Players").LocalPlayer.Backpack.Weight
+                A_2.Parent = game:GetService("Players").LocalPlayer.Character
+                fistarguments = {"Weights"}
+                MSWeightValue = 5
+                for i,v in pairs(fistarguments) do
+                    game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = 3})
+                    wait(0.5)
+                end
+                while farmmovementactive do
+                    game:GetService('RunService').Stepped:wait()
+                        fistarguments = {"Add_MS_Request"}
+                        for i,v in pairs(fistarguments) do
+                            game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = 3})
+                            wait(0.5)
+                        end
+                        if Invincibility == true then
+                    game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                    local value = 9999999999
+                    game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                    game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                end
+            end
+        end
+        end)
+    
+        MSAfkSection:NewButton("Afk Movement 10T", "Automatically farms movement 10T", function(v)
+            if ScriptActive then
+                farmmovementactive = true
+                farmfistactive = false
+                farmbodyactive = false
+                farmjumpactive = false
+                PPUsed = false
+                BTUsed = false
+                FSUsed = false
+                if Safehaven == true then
+                    local value = 100000
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(value, value, value)
+                end
+                local A_2 = game:GetService("Players").LocalPlayer.Backpack.Weight
+                A_2.Parent = game:GetService("Players").LocalPlayer.Character
+                fistarguments = {"Weights"}
+                MSWeightValue = 5
+                for i,v in pairs(fistarguments) do
+                    game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = 4})
+                    wait(0.5)
+                end
+                while farmmovementactive do
+                    game:GetService('RunService').Stepped:wait()
+                        fistarguments = {"Add_MS_Request"}
+                        for i,v in pairs(fistarguments) do
+                            game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = 4})
+                            wait(0.5)
+                        end
+                        if Invincibility == true then
+                    game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                    local value = 9999999999
+                    game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                    game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                end
+            end
+        end
+        end)
+    
+        MSAfkSection:NewButton("Afk Movement 100T", "Automatically farms movement 100T", function(v)
+            if ScriptActive then
+                farmmovementactive = true
+                farmfistactive = false
+                farmbodyactive = false
+                farmjumpactive = false
+                PPUsed = false
+                BTUsed = false
+                FSUsed = false
+                if Safehaven == true then
+                    local value = 100000
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(value, value, value)
+                end
+                local A_2 = game:GetService("Players").LocalPlayer.Backpack.Weight
+                A_2.Parent = game:GetService("Players").LocalPlayer.Character
+                fistarguments = {"Weights"}
+                MSWeightValue = 5
+                for i,v in pairs(fistarguments) do
+                    game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = 5})
+                    wait(0.5)
+                end
+                while farmmovementactive do
+                    game:GetService('RunService').Stepped:wait()
+                        fistarguments = {"Add_MS_Request"}
+                        for i,v in pairs(fistarguments) do
+                            game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = 5})
+                            wait(0.5)
+                        end
+                        if Invincibility == true then
+                    game.Players.LocalPlayer.Character.UpperTorso.Waist:Remove()
+                    local value = 9999999999
+                    game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+                    game.Players.LocalPlayer.Character.UpperTorso.CFrame = CFrame.new(value, value, value)
+                end
+            end
+        end
+        end)
+    
+        MSAfkSection:NewTextBox("Input number", "Sends a discord notification when reached", function(txt)
+            if ScriptActive then
+                print("If you dont get it here are examples: 1290000000000, 12000000, 1000000000000000 Etc.")
+                MSNumber = txt
+            end
+           end)
+    
+        local JPAfk = Window:NewTab("Jump Power")
+        local JPAfkSection = JPAfk:NewSection("Jump Power")
+        JPAfkSection:NewButton("Afk Jump power <100LB", "Automatically farms movement <100LB", function(v)
+            if ScriptActive then
+                farmjumpactive = true
+                farmfistactive = false
+                farmbodyactive = false
+                farmmovementactive = false
+                PPUsed = false
+                BTUsed = false
+                FSUsed = false
+                if Safehaven == true then
+                    local value = 100000
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(value, value, value)
+                end
+                while farmjumpactive do
+                    game:GetService('RunService').Stepped:wait()
+                    jumparguments = {"Add_JF_Request"}
+                    for i,v in pairs(jumparguments) do
+                        game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = 1})
+                        wait(0.5)
+                    end
+                end
+        end
+        end)
+    
+        JPAfkSection:NewButton("Afk Jump power 100LB", "Automatically farms movement 100LB", function(v)
+            if ScriptActive then
+                farmjumpactive = true
+                farmfistactive = false
+                farmbodyactive = false
+                farmmovementactive = false
+                PPUsed = false
+                BTUsed = false
+                FSUsed = false
+                if Safehaven == true then
+                    local value = 100000
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(value, value, value)
+                end
+                local A_2 = game:GetService("Players").LocalPlayer.Backpack.Weight
+                A_2.Parent = game:GetService("Players").LocalPlayer.Character
+                fistarguments = {"Weights"}
+                JPWeightValue = 2
+                for i,v in pairs(fistarguments) do
+                    game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = 2})
+                    wait(0.5)
+                end
+                while farmjumpactive do
+                    game:GetService('RunService').Stepped:wait()
+                    jumparguments = {"Add_JF_Request"}
+                    for i,v in pairs(jumparguments) do
+                        game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = 2})
+                        wait(0.5)
+                    end
+            end
+        end
+        end)
+    
+        JPAfkSection:NewButton("Afk Jump power 1T", "Automatically farms movement 1T", function(v)
+            if ScriptActive then
+                farmjumpactive = true
+                farmfistactive = false
+                farmbodyactive = false
+                farmmovementactive = false
+                PPUsed = false
+                BTUsed = false
+                FSUsed = false
+                if Safehaven == true then
+                    local value = 100000
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(value, value, value)
+                end
+                local A_2 = game:GetService("Players").LocalPlayer.Backpack.Weight
+                A_2.Parent = game:GetService("Players").LocalPlayer.Character
+                fistarguments = {"Weights"}
+                JPWeightValue = 3
+                for i,v in pairs(fistarguments) do
+                    game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = 3})
+                    wait(0.5)
+                end
+                while farmjumpactive do
+                    game:GetService('RunService').Stepped:wait()
+                    jumparguments = {"Add_JF_Request"}
+                    for i,v in pairs(jumparguments) do
+                        game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = 3})
+                        wait(0.5)
+                    end
+            end
+        end
+        end)
+    
+        JPAfkSection:NewButton("Afk Jump power 10T", "Automatically farms movement 10T", function(v)
+            if ScriptActive then
+                farmjumpactive = true
+                farmfistactive = false
+                farmbodyactive = false
+                farmmovementactive = false
+                PPUsed = false
+                BTUsed = false
+                FSUsed = false
+                if Safehaven == true then
+                    local value = 100000
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(value, value, value)
+                end
+                local A_2 = game:GetService("Players").LocalPlayer.Backpack.Weight
+                A_2.Parent = game:GetService("Players").LocalPlayer.Character
+                fistarguments = {"Weights"}
+                JPWeightValue = 4
+                for i,v in pairs(fistarguments) do
+                    game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = 4})
+                    wait(0.5)
+                end
+                while farmjumpactive do
+                    game:GetService('RunService').Stepped:wait()
+                    jumparguments = {"Add_JF_Request"}
+                    for i,v in pairs(jumparguments) do
+                        game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = 4})
+                        wait(0.5)
+                    end
+            end
+        end
+        end)
+    
+        JPAfkSection:NewButton("Afk Jump power 100T", "Automatically farms movement 100T", function(v)
+            if ScriptActive then
+                farmjumpactive = true
+                farmfistactive = false
+                farmbodyactive = false
+                farmmovementactive = false
+                PPUsed = false
+                BTUsed = false
+                FSUsed = false
+                if Safehaven == true then
+                    local value = 100000
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(value, value, value)
+                end
+                local A_2 = game:GetService("Players").LocalPlayer.Backpack.Weight
+                A_2.Parent = game:GetService("Players").LocalPlayer.Character
+                fistarguments = {"Weights"}
+                JPWeightValue = 5
+                for i,v in pairs(fistarguments) do
+                    game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = 5})
+                    wait(0.5)
+                end
+                while farmjumpactive do
+                    game:GetService('RunService').Stepped:wait()
+                    jumparguments = {"Add_JF_Request"}
+                    for i,v in pairs(jumparguments) do
+                        game.ReplicatedStorage.RemoteEvent:FireServer({[1] = v, [2] = 5})
+                        wait(0.5)
+                    end
+            end
+        end
+        end)
+    
+        JPAfkSection:NewTextBox("Input number", "Sends a discord notification when reached", function(txt)
+            if ScriptActive then
+                print("If you dont get it here are examples: 1290000000000, 12000000, 1000000000000000 Etc.")
+                JPNumber = txt
+            end
+           end)
+    
+        local Discord = Window:NewTab("Discord")
+        local DiscordSection = Discord:NewSection("Discord Notifications")
+        DiscordSection:NewTextBox("Enter webhook", "Fill your webhook in for notifications!", function(txt)
+            if ScriptActive then
+                DiscordNotification = true
+                webhookURL = txt
+                print("Webhook saved!")
+            end
+        end)
+    
+        DiscordSection:NewButton("Send stat", "Put in number to send a notification when reached", function(v)
+            if ScriptActive then
+                if DiscordNotification then
+                    local A_1 = game:GetService("Players").LocalPlayer.PrivateStats.FistStrength.Value
+                    local A_2 = game:GetService("Players").LocalPlayer.PrivateStats.BodyToughness.Value
+                    local A_3 = game:GetService("Players").LocalPlayer.PrivateStats.PsychicPower.Value
+                    local A_4 = game:GetService("Players").LocalPlayer.PrivateStats.MovementSpeed.Value
+                    local A_5 = game:GetService("Players").LocalPlayer.PrivateStats.JumpForce.Value
+                    if FSNumber < A_1 then
+                        DiscordOut("Your have reached your desired amount of Fist Strength: ".. A_1)
+                    end
+                    if BTNumber < A_2 then
+                        DiscordOut("Your have reached your desired amount of Body Toughness: ".. A_2)
+                    end
+                    if PPNumber < A_3 then
+                        DiscordOut("Your have reached your desired amount of Psychic Power: ".. A_3)
+                    end
+                    if MSNumber < A_4 then
+                        DiscordOut("Your have reached your desired amount of Movement Speed: ".. A_4)
+                    end
+                    if JPNumber < A_5 then
+                        DiscordOut("Your have reached your desired amount of Jump Force: ".. A_5)
+                    end
+                else
+                    wait(0.5)
+                end
+            end
+        end)
+        DiscordSection:NewButton("Death message", "Sends a discord notification if you died", function(v)
+            if ScriptActive then
+                if DiscordNotification then
+                    game:GetService("Players").LocalPlayer.Character.Humanoid.Died:connect(function()
+                        DiscordOut("U have unfortunately died")
+                    end)
+                end
+            end
+        end)
+    end
+end
